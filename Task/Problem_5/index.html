@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selected Item Display</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #listContainer {
+      text-align: center;
+      padding: 20px;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    #itemContainer {
+      margin-bottom: 10px;
+      padding: 10px;
+      width: 80%;
+      border: 1px solid #ccc;
+    }
+
+    #itemList {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+
+    #displayBox {
+      padding: 10px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div id="listContainer">
+  <div id="itemContainer">
+    <label for="itemList"><b>Select Item:</b></label>
+    <select id="itemList" onchange="displaySelectedItem()">
+      <option value="Suyog">Suyog</option>
+      <option value="Devendra">Devendra</option>
+      <option value=" Vijay">Vijay</option>
+      <!-- Add more options as needed -->
+    </select>
+    <div id="displayBox"></div>
+  </div>
+</div>
+
+<script>
+  function displaySelectedItem() {
+    var selectedItem = document.getElementById("itemList").value;
+    document.getElementById("displayBox").innerHTML = "<b>Selected Item:</b> " + selectedItem;
+    document.getElementById("itemContainer").style.border = "1px solid #ccc"; // Add border styling to itemContainer
+  }
+  displaySelectedItem();
+</script>
+</body>
+</html>

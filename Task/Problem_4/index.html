@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>String Replacement</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #formContainer {
+      text-align: center;
+      padding: 20px;
+      max-width: 400px;
+      width: 100%;
+      border: 2px solid #333; /* Black dark border */
+      border-radius: 8px;
+    }
+
+    #replaceButton {
+      background-color: brown;
+      color: white;
+      cursor: pointer;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="formContainer">
+  <label for="inputString"><b>Name:</b></label>
+  <input type="text" id="inputString" placeholder="Enter the string" style="width: 100%; margin-bottom: 10px;">
+
+  <label for="charToReplace"><b>Replace Char:</b></label>
+  <input type="text" id="charToReplace" placeholder="Enter the character to replace" style="width: 100%; margin-bottom: 10px;">
+
+  <label for="replaceWith"><b>New Char:</b></label>
+  <input type="text" id="replaceWith" placeholder="Enter the replacement character" style="width: 100%; margin-bottom: 10px;">
+
+  <button id="replaceButton" onclick="replaceAndAlert()">Check</button>
+</div>
+
+<script>
+  function replaceAndAlert() {
+    var inputString = document.getElementById("inputString").value;
+    var charToReplace = document.getElementById("charToReplace").value;
+    var replaceWith = document.getElementById("replaceWith").value;
+
+    // Perform string replacement
+    var modifiedString = inputString.replace(new RegExp(charToReplace, 'g'), replaceWith);
+
+    // Show only the modified string in an alert box
+    alert("Modified String: " + modifiedString);
+  }
+</script>
+
+</body>
+</html>

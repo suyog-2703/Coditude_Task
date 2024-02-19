@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Name List</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #nameContainer {
+      text-align: center;
+      border: 2px solid #333; 
+      padding: 20px;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    #nameInput, #addButton {
+      margin-bottom: 10px;
+      padding: 5px; 
+      width: 50%;
+    }
+
+    #addButton {
+      background-color: brown; 
+      color: white;
+      cursor: pointer;
+      font-size: 14px; 
+      border: none; 
+    }
+
+    #radioList, #checkboxList {
+      list-style-type: none;
+      padding: 0;
+      text-align: left;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    #radioList label, #checkboxList label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+<div id="nameContainer">
+  <input type="text" id="nameInput" placeholder="Enter word">
+  <br>
+  <button onclick="checkWord()" id="addButton">Add</button>
+  <br>
+  <ul id="radioList">
+    <li><label><input type="radio" name="radioOptions" value="ram">Ram</label></li>
+    <li><label><input type="radio" name="radioOptions" value="anil">Anil</label></li>
+    <li><label><input type="radio" name="radioOptions" value="sham">Sham</label></li>
+  </ul>
+  <br>
+  <ul id="checkboxList">
+    <li><label><input type="checkbox" value="ram">Ram</label></li>
+    <li><label><input type="checkbox" value="anil">Anil</label></li>
+    <li><label><input type="checkbox" value="sham">Sham</label></li>
+  </ul>
+</div>
+
+<script>
+  function checkWord() {
+    var word = document.getElementById("nameInput").value.toLowerCase();
+    var radioOptions = document.getElementsByName("radioOptions");
+    var checkboxOptions = document.querySelectorAll("#checkboxList input[type='checkbox']");
+    var isMatched = false;
+
+    // Check radio buttons
+    radioOptions.forEach(function(radio) {
+      if (radio.value.toLowerCase() === word) {
+        radio.checked = true;
+        isMatched = true;
+      } else {
+        radio.checked = false;
+      }
+    });
+
+    // Check checkboxes
+    checkboxOptions.forEach(function(checkbox) {
+      if (checkbox.value.toLowerCase() === word) {
+        checkbox.checked = true;
+        isMatched = true;
+      } else {
+        checkbox.checked = false;
+      }
+    });
+
+    if (!isMatched) {
+      alert("Entered word does not match any option.");
+    }
+  }
+</script>
+</body>
+</html>

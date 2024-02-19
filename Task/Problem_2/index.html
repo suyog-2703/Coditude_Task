@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Name List</title>
+  <style>
+    body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#nameContainer {
+  text-align: center;
+  border: 2px solid #333; /* Dark border */
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+}
+
+#nameInput, #addButton {
+  margin-bottom: 10px;
+  padding: 5px; /* Adjusted padding for better appearance */
+  width: 50%;
+}
+
+#addButton {
+  background-color: brown; /* Brown background color */
+  color: white;
+  cursor: pointer;
+  font-size: 14px; /* Medium font size */
+  border: none; /* Remove default button border */
+}
+
+#nameList {
+  list-style-type: disc; /* Use disc as the list style type */
+  list-style-position: inside; /* Place the bullet points inside the list items */
+  padding: 0;
+  text-align: left; /* Align the text to the left */
+}
+
+#nameList li {
+  margin-bottom: 5px;
+}
+
+  </style>
+</head>
+<body>
+
+<div id="nameContainer">
+  <input type="text" id="nameInput" placeholder="Enter name">
+  <br>
+  <button onclick="addName()" id="addButton">Add</button>
+  <br>
+  <ul id="nameList"></ul>
+</div>
+
+<script>
+  function addName() {
+    // Get the input value
+    var name = document.getElementById("nameInput").value;
+
+    // Check if the name is not empty
+    if (name.trim() !== "") {
+      // Create a new list item with a span element
+      var listItem = document.createElement("li");
+      var listItemText = document.createElement("span");
+      listItemText.appendChild(document.createTextNode(name));
+      listItem.appendChild(listItemText);
+
+      // Insert the new list item at the beginning of the list
+      var nameList = document.getElementById("nameList");
+      if (nameList.firstChild) {
+        nameList.insertBefore(listItem, nameList.firstChild);
+      } else {
+        nameList.appendChild(listItem);
+      }
+
+      // Clear the input field
+      document.getElementById("nameInput").value = "";
+    } else {
+      alert("Please enter a name before adding.");
+    }
+  }
+</script>
+
+</body>
+</html>

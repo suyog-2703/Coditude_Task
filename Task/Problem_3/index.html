@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Lists</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            border: 2px solid #ccc; 
+            padding: 10px; 
+        }
+
+        .list-container {
+            max-width: 200px;
+            margin: auto;
+            overflow-y: scroll; /* Always show the vertical scrollbar */
+            max-height: 150px; /* Set the maximum height for the container */
+            min-height: 50px; /* Set a minimum height to always show the scrollbar */
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .buttons-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        ul {
+            list-style-type: none; 
+            padding: 0;
+            margin: 0;
+        }
+
+        button {
+            margin: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 20px 25px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .add-button::before,
+        .prev-button::before {
+            font-family: 'Font Awesome 6 Free';
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="list-container">
+        <ul id="list1">
+            <li>Volvo</li>
+            <li>Saab</li>
+            <li>Opel</li>
+            <li>Audi</li>
+            <li>Toyota</li>
+        </ul>
+    </div>
+
+    <div class="buttons-container">
+        <button class="add-button" onclick="addItemToList2()">Add>></button>
+        <button class="prev-button" onclick="addItemToList1()"> &lt;&lt; Add </button>
+    </div>
+
+    <div class="list-container">
+        <ul id="list2"></ul>
+    </div>
+
+</div>
+
+<script>
+    // Arrays to store items in List 1 and List 2
+    var list1 = ["Volvo", "Saab", "Opel", "Audi", "Toyota"]; 
+    var list2 = [""]; 
+
+    // Function to add an item to List 2 and remove from List 1
+    function addItemToList2() {
+        
+        if (list1.length > 0) {
+            
+            list2.push(list1.shift());
+
+            
+            updateLists();
+        }
+    }
+
+    // Function to add an item to List 1 and remove from List 2
+    function addItemToList1() {
+       
+        if (list2.length > 0) {
+            list1.push(list2.pop());
+            updateLists();
+        }
+    }
+
+    // Function to update the displayed lists
+    function updateLists() {
+        var list1Element = document.getElementById("list1");
+        var list2Element = document.getElementById("list2");
+
+        list1Element.innerHTML = "";
+        list2Element.innerHTML = "";
+
+        // Add items to List 1
+        for (var i = 0; i < list1.length; i++) {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(list1[i]));
+            list1Element.appendChild(li);
+        }
+
+        // Add items to List 2
+        for (var j = 0; j < list2.length; j++) {
+            var li = document.createElement("li");
+            li.appendChild(document.createTextNode(list2[j]));
+            list2Element.appendChild(li);
+        }
+    }
+</script>
+
+</body>
+</html>
